@@ -133,6 +133,7 @@
                 </div>
                 <div class="col-md-6 text-right">
                   <button
+                    type="button"
                     class="btn btn-primary"
                     id="btnThem"
                     data-toggle="modal"
@@ -163,6 +164,7 @@
                   </div>
                 </div>
               </div>
+              <!-- ---- -->
               <table class="table table-bordered table-hover myTable">
                 <thead class="text-primary">
                   <tr>
@@ -180,7 +182,9 @@
                     <th><em class="fa fa-cog"></em></th>
                   </tr>
                 </thead>
-                <tbody id="tableDanhSach"></tbody>
+                <tbody id="tableDanhSach">
+                  <!-- -----  -->
+                </tbody>
               </table>
             </div>
 
@@ -214,7 +218,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form role="form">
+            <form role="form" id="formNhanVien">
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -222,7 +226,9 @@
                       ><i class="fa fa-user"></i
                     ></span>
                   </div>
+
                   <input
+                    data-validation="account"
                     type="text"
                     name="tk"
                     id="tknv"
@@ -230,7 +236,6 @@
                     placeholder="Tài khoản"
                   />
                 </div>
-
                 <span class="sp-thongbao" id="tbTKNV"></span>
               </div>
 
@@ -242,6 +247,7 @@
                     ></span>
                   </div>
                   <input
+                    data-validation="name"
                     type="name"
                     name="name"
                     id="name"
@@ -260,6 +266,7 @@
                     ></span>
                   </div>
                   <input
+                    data-validation="email"
                     type="email"
                     name="email"
                     id="email"
@@ -267,7 +274,6 @@
                     placeholder="Email"
                   />
                 </div>
-
                 <span class="sp-thongbao" id="tbEmail"></span>
               </div>
 
@@ -279,6 +285,7 @@
                     ></span>
                   </div>
                   <input
+                    data-validation="pass"
                     type="password"
                     name="password"
                     id="password"
@@ -304,7 +311,6 @@
                     placeholder="Ngày làm"
                   />
                 </div>
-
                 <span class="sp-thongbao" id="tbNgay"></span>
               </div>
 
@@ -316,6 +322,7 @@
                     ></span>
                   </div>
                   <input
+                    data-validation="salary"
                     type="text"
                     name="luongCB"
                     id="luongCB"
@@ -325,6 +332,7 @@
                 </div>
                 <span class="sp-thongbao" id="tbLuongCB"></span>
               </div>
+
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -332,16 +340,15 @@
                       ><i class="fa fa-briefcase"></i
                     ></span>
                   </div>
-                  <select class="form-control" id="chucvu">
-                    <option>Chọn chức vụ</option>
-                    <option>Sếp</option>
-                    <option>Trưởng phòng</option>
-                    <option>Nhân viên</option>
+                  <select id="chucvu" class="form-control" required>
+                    <option value="Giám đốc">Giám đốc</option>
+                    <option value="Trưởng phòng">Trưởng phòng</option>
+                    <option value="Nhân viên">Nhân viên</option>
                   </select>
                 </div>
-
                 <span class="sp-thongbao" id="tbChucVu"></span>
               </div>
+
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -350,6 +357,7 @@
                     ></span>
                   </div>
                   <input
+                    data-validation="time"
                     type="text"
                     name="gioLam"
                     id="gioLam"
@@ -359,25 +367,26 @@
                 </div>
                 <span class="sp-thongbao" id="tbGiolam"></span>
               </div>
-            </form>
-          </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer" id="modal-footer">
-            <button id="btnThemNV" type="button" class="btn btn-success">
-              Thêm người dùng
-            </button>
-            <button id="btnCapNhat" type="button" class="btn btn-success">
-              Cập nhật
-            </button>
-            <button
-              id="btnDong"
-              type="button"
-              class="btn btn-danger"
-              data-dismiss="modal"
-            >
-              Đóng
-            </button>
+              <!-- ============= -->
+              <!-- Modal footer -->
+              <div class="modal-footer" id="modal-footer">
+                <button id="btnThemNV" type="submit" class="btn btn-success">
+                  Thêm người dùng
+                </button>
+                <button id="btnCapNhat" type="button" class="btn btn-success">
+                  Cập nhật
+                </button>
+                <button
+                  id="btnDong"
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  Đóng
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -388,7 +397,6 @@
     <script type="text/javascript" src="js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
     <!-- Date Picker -->
     <!-- <script src="js/jquery-ui.min.js"></script> -->
     <script src="./js/jquery-ui.js"></script>
@@ -399,9 +407,7 @@
 	<script>
 		new WOW().init();
 	</script>  -->
-
     <!-- <script src="js/modal.js"></script> -->
-
     <script type="text/javascript">
       $(document).ready(function () {
         $("#sidebarCollapse").on("click", function () {
@@ -409,6 +415,9 @@
         });
       });
     </script>
+    <script src="./util/util.js"></script>
+    <script src="./validation/validation.js"></script>
+    <script src="./models/NhanVien.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
